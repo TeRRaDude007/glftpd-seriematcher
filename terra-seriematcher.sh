@@ -5,7 +5,7 @@ SRC_DIR="/glftpd/site/TV-1080P"
 DEST_DIR="$SRC_DIR/HDR"
 
 # Ensure the HDR destination directory exists
-mkdir -p "$DEST_DIR"
+mkdir -m777 -p "$DEST_DIR"
 
 # Function to extract the base name (up to season and episode number)
 extract_season_episode() {
@@ -14,7 +14,7 @@ extract_season_episode() {
 }
 
 # Tags to skip
-SKIP_TAGS=("DV" "PROPER")
+SKIP_TAGS=("DV.2160P" "PROPER" "REPACK")
 
 # Function to check if a directory contains any of the skip tags
 contains_skip_tags() {
