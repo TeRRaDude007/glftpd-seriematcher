@@ -13,7 +13,7 @@ The script collects all matches first and then asks for a confirmation to move a
 
 Example Scenario:
 
-Given the following directories in /glftpd/site/<section>:
+Given the following directories in /glftpd/site/SERIESECTION:
 
     You.S04E09.2160p.WEB.h265-WEB123
     You.S04E09.HDR.2160p.WEB.h265-WEB123
