@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Source and destination directories
-SRC_DIR="/glftpd/site/TV-1080P"
-DEST_DIR="$SRC_DIR/HDR"
+SRC_DIR="/glftpd/site/SERIESECTION"
+DEST_DIR="$SRC_DIR/DIRTOMOVETO"
 
 # Ensure the HDR destination directory exists
-mkdir -m777 -p "$DEST_DIR"
+mkdir -p "$DEST_DIR"
 
 # Function to extract the base name (up to season and episode number)
 extract_season_episode() {
@@ -14,17 +14,12 @@ extract_season_episode() {
 }
 
 # Tags to skip
-SKIP_TAGS=("DV.2160P" "PROPER" "REPACK")
+SKIP_TAGS="\.DV.2160P|\.PROPER|\.REPACK"
 
 # Function to check if a directory contains any of the skip tags
 contains_skip_tags() {
     local dir_name="$1"
-    for tag in "${SKIP_TAGS[@]}"; do
-        if [[ "$dir_name" == *".$tag"* ]]; then
-            return 0
-        fi
-    done
-    return 1
+    echo "$dir_name" | grep -qE "$SKIP_TAGS"
 }
 
 # Use associative arrays to store directories based on season/episode
@@ -32,10 +27,10 @@ declare -A non_hdr_dirs
 declare -A hdr_dirs
 declare -a to_move_list  # Array to store non-HDR directories to be moved
 
-# Scan all directories in the source folder
-for dir in "$SRC_DIR"/*; do
-    # Ensure we're working with a directory
-    if [ ! -d "$dir" ]; then
+# Scan all directories in the source folder that are older than 7 days
+for dir in $(find "$SRC_DIR" -maxdepth 1 -type d -mtime +7); do
+    # Skip the source directory itself
+    if [ "$dir" == "$SRC_DIR" ]; then
         continue
     fi
 
@@ -73,7 +68,7 @@ done
 # After collecting all moves, confirm them all at once
 if [ ${#to_move_list[@]} -gt 0 ]; then
     echo
-    echo "The following non-HDR directories are ready to be moved to $DEST_DIR:"
+    echo "The following non-HDR directories, older than 7 days, are ready to be moved to $DEST_DIR:"
     for non_hdr_dir in "${to_move_list[@]}"; do
         echo " - $non_hdr_dir"
     done
@@ -91,4 +86,3 @@ if [ ${#to_move_list[@]} -gt 0 ]; then
 else
     echo "No matches found to move."
 fi
-
