@@ -47,5 +47,15 @@ Script Summary:
 
     No Matches: No directories are moved; everything remains as is.
     Matches Found: Non-HDR directories are moved to the HDR folder after confirmation.
-
 This ensures that only the non-HDR directories are moved when a corresponding HDR directory is found, and directories without matching pairs are left untouched.
+
+How It Works:
+
+    The script scans for directories older than 7 days.
+    It processes these directories for matching and moving.
+    If a matching HDR directory exists, the non-HDR directory is added to the list for moving.
+    A confirmation prompt is shown at the end for all moves.
+
+This will ensure that only directories older than 7 days are moved, and everything is confirmed before proceeding.
+
+
