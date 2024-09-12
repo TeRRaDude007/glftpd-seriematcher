@@ -131,4 +131,6 @@ if [ ${#to_move_list[@]} -gt 0 ]; then
 else
     echo "No matches found to move."
 fi
-#EOF
+# EOF
+# !!!+++ This Script Comes Without any Support +++!!!
+# ./Just enjoy it.
