@@ -76,10 +76,10 @@ declare -A non_hdr_dirs
 declare -A hdr_hlg_dirs
 declare -a to_move_list  # Array to store non-HDR/non-HLG directories to be moved
 
-# Scan all directories in the source folder
-for dir in "$SRC_DIR"/*; do
-    # Ensure we're working with a directory
-    if [ ! -d "$dir" ]; then
+# Scan all directories in the source folder that are older than 7 days
+for dir in $(find "$SRC_DIR" -maxdepth 1 -type d -mtime +7); do
+    # Skip the source directory itself
+    if [ "$dir" == "$SRC_DIR" ]; then
         continue
     fi
 
