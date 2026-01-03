@@ -30,8 +30,16 @@
 #    No Matches: No directories are moved; everything remains as is.
 #    Matches Found: Non-HDR directories are moved to the HDR folder after confirmation.
 #
-# UPDATE: Here is an updated version 3.0 of the script to match both HDR and HLG directories alongside their non-HDR/non-HLG counterparts. 
-# This version introduces logic to handle HLG as well as HDR, ensuring non-HDR and non-HLG directories are moved when a corresponding HDR or HLG version exists.
+#  UPDATE: 
+#   Here is an updated version 3.0 of the script to match both HDR and HLG directories alongside their non-HDR/non-HLG counterparts. 
+#   This version introduces logic to handle HLG as well as HDR, ensuring non-HDR and non-HLG directories are moved when a corresponding HDR or HLG version exists.
+#
+#  Note:
+#   Please take note that these scripts come without instructions on how to set
+#   them up, it is sole responsibility of the end user to understand the scripts
+#   function before executing them. If you do not know how to execute them, then
+#   please don't use them. They come with no warranty should any damage happen due
+#   to the improper settings and execution of these scripts (missing data, etc).
 #
 ########### Changelog ##########################
 #
@@ -135,3 +143,4 @@ if [ ${#to_move_list[@]} -gt 0 ]; then
 else
     echo "No matches found to move."
 fi
+# eof
